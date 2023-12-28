@@ -2,8 +2,8 @@
 #SBATCH --job-name=mae-pretraining
 #SBATCH --partition=PATHgpu
 #SBATCH --nodes=2
-#SBATCH --ntasks-per-node=1
-#SBATCH --gres=gpu:1
+#SBATCH --ntasks-per-node=2
+#SBATCH --gres=gpu:2
 #SBATCH --cpus-per-task=8
 #SBATCH --mem=64gb
 #SBATCH --chdir=/exports/path-nefro-hpc/gbuzzanca_/mae/
