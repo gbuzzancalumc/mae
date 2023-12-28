@@ -72,7 +72,6 @@ class RandStainNA(object):
 
         # pick a random color space
         color_space = np.random.choice(COLOR_SPACES)
-        print(f"Color space picked: {color_space}")
         img = convert_rgb_to_color_space(img, color_space)
 
         tar_stats = np.zeros((3, 2))
