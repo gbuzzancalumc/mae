@@ -1,0 +1,81 @@
+HED_0:
+  avg:
+    distribution: laplace
+    mean: 0.021438714116811752
+    std: 0.015790363773703575
+  std:
+    distribution: laplace
+    mean: 0.01669287122786045
+    std: 0.027753369882702827
+HED_1:
+  avg:
+    distribution: laplace
+    mean: 0.01106064673513174
+    std: 0.00902690552175045
+  std:
+    distribution: norm
+    mean: 0.00821725931018591
+    std: 0.005123203154653311
+HED_2:
+  avg:
+    distribution: laplace
+    mean: 0.015367718413472176
+    std: 0.012033242732286453
+  std:
+    distribution: laplace
+    mean: 0.009513077326118946
+    std: 0.01091788150370121
+HSV_0:
+  avg:
+    distribution: norm
+    mean: 146.6949920654297
+    std: 9.547410011291504
+  std:
+    distribution: laplace
+    mean: 10.926972389221191
+    std: 7.571306228637695
+HSV_1:
+  avg:
+    distribution: norm
+    mean: 50.0120849609375
+    std: 23.650014877319336
+  std:
+    distribution: norm
+    mean: 24.538593292236328
+    std: 10.402376174926758
+HSV_2:
+  avg:
+    distribution: laplace
+    mean: 208.5463409423828
+    std: 24.06131362915039
+  std:
+    distribution: laplace
+    mean: 23.47734260559082
+    std: 15.811893463134766
+LAB_0:
+  avg:
+    distribution: norm
+    mean: 186.831787109375
+    std: 25.22957420349121
+  std:
+    distribution: laplace
+    mean: 28.405900955200195
+    std: 13.61922550201416
+LAB_1:
+  avg:
+    distribution: norm
+    mean: 146.02293395996094
+    std: 9.063520431518555
+  std:
+    distribution: norm
+    mean: 9.221732139587402
+    std: 3.985851287841797
+LAB_2:
+  avg:
+    distribution: laplace
+    mean: 116.68218994140625
+    std: 5.627769947052002
+  std:
+    distribution: laplace
+    mean: 5.259278297424316
+    std: 2.777909755706787
