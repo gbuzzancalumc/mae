@@ -39,9 +39,9 @@ from engine_pretrain import train_one_epoch
 
 def get_args_parser():
     parser = argparse.ArgumentParser('MAE pre-training', add_help=False)
-    parser.add_argument('--batch_size', default=32, type=int,
+    parser.add_argument('--batch_size', default=128, type=int,
                         help='Batch size per GPU (effective batch size is batch_size * accum_iter * # gpus')
-    parser.add_argument('--epochs', default=20, type=int)
+    parser.add_argument('--epochs', default=150, type=int)
     parser.add_argument('--accum_iter', default=1, type=int,
                         help='Accumulate gradient iterations (for increasing the effective batch size under memory constraints)')
 
@@ -70,7 +70,7 @@ def get_args_parser():
     parser.add_argument('--min_lr', type=float, default=0., metavar='LR',
                         help='lower lr bound for cyclic schedulers that hit 0')
 
-    parser.add_argument('--warmup_epochs', type=int, default=1, metavar='N',
+    parser.add_argument('--warmup_epochs', type=int, default=10, metavar='N',
                         help='epochs to warmup LR')
 
     # Dataset parameters
@@ -137,7 +137,7 @@ def main(args):
 
     cudnn.benchmark = True
 
-    dataset_train = WSIDataset(h5_files, full_dataset_epochs=True)
+    dataset_train = WSIDataset(h5_files, full_dataset_epochs=False, imgs_per_epoch=2000000)
 
     # simple augmentation
 
