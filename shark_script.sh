@@ -6,9 +6,9 @@
 #SBATCH --gres=gpu:3
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=128gb
-#SBATCH --chdir=/exports/path-nefro-hpc/gbuzzanca_/MAE/
-#SBATCH --output=/exports/path-nefro-hpc/gbuzzanca_/MAE/%x-%j.out
-#SBATCH --error=/exports/path-nefro-hpc/gbuzzanca_/MAE/%x-%j.err
+#SBATCH --chdir=/exports/path-nefro-hpc/gbuzzanca_/mae/
+#SBATCH --output=/exports/path-nefro-hpc/gbuzzanca_/mae/%x-%j.out
+#SBATCH --error=/exports/path-nefro-hpc/gbuzzanca_/mae/%x-%j.err
 
 export PYTHONUNBUFFERED=TRUE
 export NCCL_SOCKET_IFNAME=team0
