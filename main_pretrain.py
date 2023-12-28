@@ -137,7 +137,7 @@ def main(args):
 
     cudnn.benchmark = True
 
-    dataset_train = WSIDataset(h5_files, full_dataset_epochs=True)
+    dataset_train = WSIDataset(h5_files, full_dataset_epochs=False, imgs_per_epoch=1000)
 
     # simple augmentation
 
