@@ -100,7 +100,7 @@ def get_args_parser():
                         help='number of distributed processes')
     parser.add_argument('--local_rank', default=-1, type=int)
     parser.add_argument('--dist_on_itp', action='store_true')
-    parser.add_argument('--dist_url', default='env://',
+    parser.add_argument('--dist_url', default='tcp://145.88.76.197:12340',
                         help='url used to set up distributed training')
 
     return parser
