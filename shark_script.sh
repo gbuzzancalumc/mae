@@ -19,4 +19,4 @@ module load library/cudnn/11.6/cudnn
 source ~/.bashrc
 conda activate /exports/path-nefro-hpc/gbuzzanca_/conda_envs/mae
 
-srun python submitit_pretrain.py --job_dir /exports/path-nefro-hpc/gbuzzanca_/mae/ --norm_pix_loss --data_path /export/path-nefro-hpc/gbuzzanca_/train_amc_umcu_lumc_kul_test_uka_runmc/train
+srun python submitit_pretrain.py --job_dir /exports/path-nefro-hpc/gbuzzanca_/mae/output/ --norm_pix_loss --data_path /export/path-nefro-hpc/gbuzzanca_/train_amc_umcu_lumc_kul_test_uka_runmc/train
