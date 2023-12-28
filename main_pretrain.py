@@ -11,6 +11,7 @@
 import argparse
 import datetime
 import json
+import typing
 import numpy as np
 import os
 import time
@@ -21,6 +22,7 @@ import torch.backends.cudnn as cudnn
 from torch.utils.tensorboard import SummaryWriter
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
+from dataset import WSIDataset
 
 import timm
 
@@ -104,8 +106,24 @@ def get_args_parser():
     return parser
 
 
+def find_h5_files(path: str) -> typing.List[str]:
+    h5_files = []
+    for root, dirs, files in os.walk(path):
+        for file in files:
+            if file.endswith(".h5"):
+                h5_files.append(os.path.join(root, file))
+
+    return h5_files
+
+
 def main(args):
+    os.environ["NCCL_SOCKET_IFNAME"] = "team0"
+    #  ngpus_per_node = torch.cuda.device_count()
+    #  args.world_size = int(os.getenv('SLURM_NNODES')) * ngpus_per_node
+
     misc.init_distributed_mode(args)
+
+    h5_files = find_h5_files(args.data_path)
 
     print('job dir: {}'.format(os.path.dirname(os.path.realpath(__file__))))
     print("{}".format(args).replace(', ', ',\n'))
@@ -119,24 +137,16 @@ def main(args):
 
     cudnn.benchmark = True
 
-    # simple augmentation
-    transform_train = transforms.Compose([
-            transforms.RandomResizedCrop(args.input_size, scale=(0.2, 1.0), interpolation=3),  # 3 is bicubic
-            transforms.RandomHorizontalFlip(),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])])
-    dataset_train = datasets.ImageFolder(os.path.join(args.data_path, 'train'), transform=transform_train)
-    print(dataset_train)
+    dataset_train = WSIDataset(h5_files, full_dataset_epochs=True)
 
-    if True:  # args.distributed:
-        num_tasks = misc.get_world_size()
-        global_rank = misc.get_rank()
-        sampler_train = torch.utils.data.DistributedSampler(
-            dataset_train, num_replicas=num_tasks, rank=global_rank, shuffle=True
-        )
-        print("Sampler_train = %s" % str(sampler_train))
-    else:
-        sampler_train = torch.utils.data.RandomSampler(dataset_train)
+    # simple augmentation
+
+    num_tasks = misc.get_world_size()
+    global_rank = misc.get_rank()
+    sampler_train = torch.utils.data.DistributedSampler(
+        dataset_train, num_replicas=num_tasks, rank=global_rank, shuffle=True
+    )
+    print("Sampler_train = %s" % str(sampler_train))
 
     if global_rank == 0 and args.log_dir is not None:
         os.makedirs(args.log_dir, exist_ok=True)
