@@ -108,10 +108,10 @@ class RandStainNA(object):
 class Transform:
     def __init__(self, rand_stain_yaml: str):
         self.transform = transforms.Compose([
-            RandStainNA(rand_stain_yaml, p=0.5),
+            RandStainNA(rand_stain_yaml, p=0.25),
             transforms.Resize((224, 224)),
-            transforms.RandomHorizontalFlip(p=0.5),
-            transforms.RandomVerticalFlip(p=0.5),
+            transforms.RandomHorizontalFlip(p=0.25),
+            transforms.RandomVerticalFlip(p=0.25),
             transforms.RandomRotation(degrees=(-20, 20)),
             transforms.RandomApply(
                 transforms=[transforms.ColorJitter(brightness=0.1, contrast=0.1, saturation=0.1, hue=0.1)],
